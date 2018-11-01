@@ -91,13 +91,16 @@ public class Interval {
         return s;
     }
 
-    public boolean equals(Interval i){
-        if(this.pocetnaTacka==i.pocetnaTacka && this.krajnjaTacka==i.krajnjaTacka && this.pripadnostPocetne==i.pripadnostPocetne && this.pripadnostKrajnje==i.pripadnostKrajnje)
+    public boolean equals(Interval i) {
+        if(this==i){
             return true;
-        else
+        }
+        if (this.pocetnaTacka == i.pocetnaTacka && this.krajnjaTacka == i.krajnjaTacka && this.pripadnostPocetne == i.pripadnostPocetne && this.pripadnostKrajnje == i.pripadnostKrajnje) {
+            return true;
+        } else {
             return false;
+        }
     }
-
 
 }
 
