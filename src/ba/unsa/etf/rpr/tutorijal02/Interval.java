@@ -91,14 +91,11 @@ public class Interval {
         return s;
     }
 
-    public boolean equals(Interval interval){
-        if(this==interval){
+    public boolean equals(Interval i){
+        if(this.pocetnaTacka==i.pocetnaTacka && this.krajnjaTacka==i.krajnjaTacka && this.pripadnostPocetne==i.pripadnostPocetne && this.pripadnostKrajnje==i.pripadnostKrajnje)
             return true;
-        }
-        if( (this.pocetnaTacka==interval.pocetnaTacka &&  this.krajnjaTacka==interval.krajnjaTacka) && (this.pripadnostPocetne==interval.pripadnostPocetne && this.pripadnostKrajnje==interval.pripadnostKrajnje) ){
-            return true;
-        }
-        return false;
+        else
+            return false;
     }
 
 
