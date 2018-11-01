@@ -27,6 +27,11 @@ public class Interval {
         pripadnostKrajnje=false;
     }
 
+    public Interval (Interval interval) { //konstruktor koji prima objekat tipa Interval
+        this (interval.pocetnaTacka,interval.krajnjaTacka,interval.pripadnostPocetne,interval.pripadnostKrajnje);
+    }
+
+
     public boolean isNull() {
         if (pocetnaTacka == 0 && krajnjaTacka == 0 && pripadnostPocetne = false && pripadnostKrajnje = false) {
             return true;
@@ -35,27 +40,42 @@ public class Interval {
     }
 
     public boolean isIn(double tacka) {
+        if(pripadnostPocetne && tacka==this.pocetnaTacka){
+            return true;
+        }
+        if(pripadnostKrajnje && tacka==this.krajnjaTacka){
+            return true;
+        }
+        if(tacka>this.pocetnaTacka && tacka<this.krajnjaTacka){
+            return true;
+        }
+        return false;
+    }
 
-        if (pripadnostPocetne) {
-            if (tacka < pocetnaTacka) {
-                return false;
-            }
+    public Interval intersect(Interval interval) {
+
+        if (this.isIn(interval.pocetnaTacka) && this.isIn(interval.krajnjaTacka)) { //slucaj kada interval u potpunosti pripada drugomintervalu;
+            Interval presjek=new Interval(interval);
+            return presjek;
         }
-        if (pripadnostKrajnje) {
-            if (tacka > krajnjaTacka) {
-                return false;
-            }
+
+        if (this.isIn(interval.pocetnaTacka)) {
+            Interval presjek=new Interval(interval.pocetnaTacka,this.krajnjaTacka, interval.pripadnostPocetne,this.pripadnostKrajnje);
+            return presjek;
         }
-        if (tacka <= pocetnaTacka) {
-            return false;
+
+        if (this.isIn(interval.krajnjaTacka)) {
+            Interval presjek=new Interval(this.pocetnaTacka,interval.krajnjaTacka, this.pripadnostPocetne,interval.pripadnostKrajnje);
+            return presjek;
         }
-        if (tacka >= krajnjaTacka) {
-            return false;
-        }
-        return true;
     }
 
 
 
 
-}
+    }
+
+
+
+
+
